@@ -1,0 +1,32 @@
+{
+    "description": "A vibrant cartoon avatar NFT featuring a bald character with a green collar and a bright smile. This series showcases a minimalist yet expressive artistic style.",
+    "external_url": "https://openseacreatures.io/3",
+    "image": "https://nutritious-silver-cattle.myfilebase.com/ipfs/QmZv4kHw2dMTou7jwi47n9rMBJLviMVGwvzjNxdzCrpJWp",
+    "name": "Happy Baldy",
+    "attributes": [
+        {
+            "trait_type": "Expression",
+            "value": "Happy Smile"
+        },
+        {
+            "trait_type": "Hairstyle",
+            "value": "Bald"
+        },
+        {
+            "trait_type": "Clothing",
+            "value": "Green Collar"
+        },
+        {
+            "trait_type": "Style",
+            "value": "Cartoon"
+        },
+        {
+            "trait_type": "Background",
+            "value": "Warm Yellow"
+        },
+        {
+            "trait_type": "Rarity",
+            "value": "Common"
+        }
+    ]
+}
