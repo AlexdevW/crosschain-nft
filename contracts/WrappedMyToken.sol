@@ -3,7 +3,7 @@ pragma solidity ^0.8.28;
 
 import {MyToken} from "./MyToken.sol";
 
-contract WrapperMyToken is MyToken {
+contract WrappedMyToken is MyToken {
     constructor(
         string memory TokenName,
         string memory TokenSymbol

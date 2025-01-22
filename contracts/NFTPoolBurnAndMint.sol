@@ -7,7 +7,7 @@ import {Client} from "@chainlink/contracts-ccip/src/v0.8/ccip/libraries/Client.s
 import {CCIPReceiver} from "@chainlink/contracts-ccip/src/v0.8/ccip/applications/CCIPReceiver.sol";
 import {IERC20} from "@chainlink/contracts-ccip/src/v0.8/vendor/openzeppelin-solidity/v4.8.3/contracts/token/ERC20/IERC20.sol";
 import {SafeERC20} from "@chainlink/contracts-ccip/src/v0.8/vendor/openzeppelin-solidity/v4.8.3/contracts/token/ERC20/utils/SafeERC20.sol";
-import {WrapperMyToken} from "./WrapperMyToken.sol";
+import {WrappedMyToken} from "./WrappedMyToken.sol";
 
 /**
  * THIS IS AN EXAMPLE CONTRACT THAT USES HARDCODED VALUES FOR CLARITY.
@@ -16,7 +16,7 @@ import {WrapperMyToken} from "./WrapperMyToken.sol";
  */
 
 /// @title - A simple messenger contract for sending/receiving string data across chains.
-contract NFTPoolBurnAndRelease is CCIPReceiver, OwnerIsCreator {
+contract NFTPoolBurnAndMint is CCIPReceiver, OwnerIsCreator {
     using SafeERC20 for IERC20;
 
     // Custom errors to provide more descriptive revert messages.
@@ -43,7 +43,7 @@ contract NFTPoolBurnAndRelease is CCIPReceiver, OwnerIsCreator {
 
     IERC20 private s_linkToken;
 
-    WrapperMyToken wnft;
+    WrappedMyToken wnft;
 
     struct RequestData {
         uint256 tokenId;
@@ -59,7 +59,7 @@ contract NFTPoolBurnAndRelease is CCIPReceiver, OwnerIsCreator {
         address myTokenAddr
     ) CCIPReceiver(_router) {
         s_linkToken = IERC20(_link);
-        wnft = WrapperMyToken(myTokenAddr);
+        wnft = WrappedMyToken(myTokenAddr);
     }
 
     /// @dev Modifier that checks the receiver address is not 0.
@@ -220,9 +220,9 @@ contract NFTPoolBurnAndRelease is CCIPReceiver, OwnerIsCreator {
                     // Best Practice: For simplicity, the values are hardcoded. It is advisable to use a more dynamic approach
                     // where you set the extra arguments off-chain. This allows adaptation depending on the lanes, messages,
                     // and ensures compatibility with future CCIP upgrades. Read more about it here: https://docs.chain.link/ccip/best-practices#using-extraargs
-                    Client.EVMExtraArgsV2({
-                        gasLimit: 200_000, // Gas limit for the callback on the destination chain
-                        allowOutOfOrderExecution: true // Allows the message to be executed out of order relative to other messages from the same sender
+                    Client.EVMExtraArgsV1({
+                        gasLimit: 200_000// Gas limit for the callback on the destination chain
+                        // allowOutOfOrderExecution: true // Allows the message to be executed out of order relative to other messages from the same sender
                     })
                 ),
                 // Set the feeToken to a feeTokenAddress, indicating specific asset will be used for fees
